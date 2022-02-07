@@ -1,7 +1,21 @@
 let option = `quotes`;
+let searchAnime = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchAnimeQuotes(option);
+    const searchBtn = document.getElementById('search-anime-btn');
+    const searchDiv = document.querySelector('.container');
+    searchDiv.style.display = "none";
+    
+    searchBtn.addEventListener('click', () => {
+        searchAnime = !searchAnime;
+        if(searchAnime){
+            searchDiv.style.display = "block";
+        }
+        else{
+            searchDiv.style.display = "none";
+        }
+    })
 });
 
 
