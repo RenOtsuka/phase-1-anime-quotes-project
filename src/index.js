@@ -12,7 +12,7 @@ function fetchAnimeQuotes(option){
     fetch(`https://animechan.vercel.app/api/${option}`)
     .then(resp => resp.json())
     .then(obj => {
-        if(option === `available/anime`){
+        if(option === 'available/anime'){
             loadAvailableAnime(obj);
         }
         else{
@@ -25,9 +25,16 @@ function loadAnimeQuotes(quoteObj){
     const quoteList = document.getElementById('quote-list');
     quoteList.textContent = '';
     document.getElementById('anime-list').textContent = '';
-
-    for(let key in quoteObj){
-        let li = makeQuote(quoteObj[key]);
+    
+    if(option === 'quotes'){
+        for(let key in quoteObj){
+            let li = makeQuote(quoteObj[key]);
+            quoteList.appendChild(li);
+        }
+    }
+    else{
+        //console.log(quoteObj);
+        let li = makeQuote(quoteObj);
         quoteList.appendChild(li);
     }
 }
