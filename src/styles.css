@@ -1,0 +1,12 @@
+body{
+    font-family: Georgia, serif;
+}
+
+
+.search-anime-form{
+    display: none;
+}
+
+.search-char-form{
+    display: none;
+}
