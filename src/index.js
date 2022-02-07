@@ -1,11 +1,49 @@
+let option = `quotes`;
+
 document.addEventListener('DOMContentLoaded', () => {
-    fetchAnimeQuotes();
+    fetchAnimeQuotes(option);
 });
 
 
-function fetchAnimeQuotes(){
-    fetch(`https://animechan.vercel.app/api/quotes`)
+function fetchAnimeQuotes(option){
+    fetch(`https://animechan.vercel.app/api/${option}`)
     .then(resp => resp.json())
     .then(obj => loadAnimeQuotes(obj));
 }
 
+function loadAnimeQuotes(quoteObj){
+    const divList = document.getElementById('quote-list');
+    divList.textContent = '';
+
+    for(let key in quoteObj){
+        let li = makeQuote(quoteObj[key]);
+        divList.appendChild(li);
+    }
+}
+
+function makeQuote(quoteObj){
+    const li = document.createElement('li');
+    li.id = quoteObj['anime'];
+
+    const blockQuote = document.createElement('blockquote');
+    blockQuote.className = 'block-quote';
+
+    const title = document.createElement('h4');
+    title.className = 'title';
+    title.textContent = quoteObj['anime'];
+
+    const quote = document.createElement('p');
+    quote.id = `${quoteObj['anime']} Quote`;
+    quote.textContent = quoteObj['quote'];
+
+    const character = document.createElement('footer');
+    character.id = quoteObj['character'];
+    character.textContent = `-${quoteObj['character']}`;
+
+    blockQuote.appendChild(title);
+    blockQuote.appendChild(quote);
+    blockQuote.appendChild(character);
+    li.appendChild(blockQuote);
+
+    return li;
+}
