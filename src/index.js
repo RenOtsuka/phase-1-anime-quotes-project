@@ -3,25 +3,46 @@ let searchAnime = false;
 let searchChar = false;
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetchAnimeQuotes(option); 
-    initializeForms();
+    //fetchAnimeQuotes(option); 
+    initializeFormsAndBtns();
 
 });
-
 
 function fetchAnimeQuotes(option){
     fetch(`https://animechan.vercel.app/api/${option}`)
     .then(resp => resp.json())
-    .then(obj => loadAnimeQuotes(obj));
+    .then(obj => {
+        if(option === `available/anime`){
+            loadAvailableAnime(obj);
+        }
+        else{
+            loadAnimeQuotes(obj);
+        }
+    });
 }
 
 function loadAnimeQuotes(quoteObj){
-    const divList = document.getElementById('quote-list');
-    divList.textContent = '';
+    const quoteList = document.getElementById('quote-list');
+    quoteList.textContent = '';
+    document.getElementById('anime-list').textContent = '';
 
     for(let key in quoteObj){
         let li = makeQuote(quoteObj[key]);
-        divList.appendChild(li);
+        quoteList.appendChild(li);
+    }
+}
+
+function loadAvailableAnime(animeObj){
+    const animeList = document.getElementById('anime-list');
+    animeList.textContent = '';
+    document.getElementById('quote-list').textContent = '';
+
+    for(let item in animeObj){
+        //console.log(animeArr[item])
+        let li = document.createElement('li');
+        li.id = animeObj[item];
+        li.textContent = animeObj[item];
+        animeList.appendChild(li);
     }
 }
 
@@ -53,7 +74,6 @@ function makeQuote(quoteObj){
     return ul;
 }
 
-
 function formToggle(form, bool){
 
     bool = !bool;
@@ -67,13 +87,17 @@ function formToggle(form, bool){
     return bool;
 }
 
-function initializeForms(){
+function initializeFormsAndBtns(){
 
     const searchAnimeBtn = document.getElementById('search-anime-btn');
     const searchAnimeForm = document.querySelector('.search-anime-form');
 
     const searchCharBtn = document.getElementById('search-char-btn');
     const searchCharForm = document.querySelector('.search-char-form');
+
+    const tenQuotesBtn = document.getElementById('ten-random-quotes');
+    const randomQuoteBtn = document.getElementById('random-quote');
+    const availableAnimeBtn = document.getElementById('available-anime')
 
     searchAnimeForm.style.display = "none";
     searchCharForm.style.display = "none";
@@ -84,5 +108,22 @@ function initializeForms(){
 
     searchCharBtn.addEventListener('click', () => {
         searchChar = formToggle(searchCharForm, searchChar);
-    })    
+    });
+
+    tenQuotesBtn.addEventListener('click', () => {
+        option = `quotes`;
+        fetchAnimeQuotes(option);
+    })
+
+    randomQuoteBtn.addEventListener('click', () => {
+        option = `random`;
+        fetchAnimeQuotes(option);
+    })
+
+    availableAnimeBtn.addEventListener('click', () => {
+        option = `available/anime`;
+        fetchAnimeQuotes(option);
+    })
 }
+
+
