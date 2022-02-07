@@ -1,21 +1,11 @@
 let option = `quotes`;
 let searchAnime = false;
+let searchChar = false;
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetchAnimeQuotes(option);
-    const searchBtn = document.getElementById('search-anime-btn');
-    const searchDiv = document.querySelector('.container');
-    searchDiv.style.display = "none";
-    
-    searchBtn.addEventListener('click', () => {
-        searchAnime = !searchAnime;
-        if(searchAnime){
-            searchDiv.style.display = "block";
-        }
-        else{
-            searchDiv.style.display = "none";
-        }
-    })
+    fetchAnimeQuotes(option); 
+    initializeForms();
+
 });
 
 
@@ -36,8 +26,8 @@ function loadAnimeQuotes(quoteObj){
 }
 
 function makeQuote(quoteObj){
-    const li = document.createElement('li');
-    li.id = quoteObj['anime'];
+    const ul = document.createElement('ul');
+    ul.id = quoteObj['anime'];
 
     const blockQuote = document.createElement('blockquote');
     blockQuote.className = 'block-quote';
@@ -48,7 +38,7 @@ function makeQuote(quoteObj){
 
     const quote = document.createElement('p');
     quote.id = `${quoteObj['anime']} Quote`;
-    quote.textContent = quoteObj['quote'];
+    quote.textContent = `"${quoteObj['quote']}"`;
 
     const character = document.createElement('footer');
     character.id = quoteObj['character'];
@@ -57,7 +47,42 @@ function makeQuote(quoteObj){
     blockQuote.appendChild(title);
     blockQuote.appendChild(quote);
     blockQuote.appendChild(character);
-    li.appendChild(blockQuote);
+    blockQuote.appendChild(document.createElement('br'));
+    ul.appendChild(blockQuote);
 
-    return li;
+    return ul;
+}
+
+
+function formToggle(form, bool){
+
+    bool = !bool;
+    if(bool){
+        form.style.display = "block";
+    }
+    else{
+        form.style.display = "none";
+    }
+
+    return bool;
+}
+
+function initializeForms(){
+
+    const searchAnimeBtn = document.getElementById('search-anime-btn');
+    const searchAnimeForm = document.querySelector('.search-anime-form');
+
+    const searchCharBtn = document.getElementById('search-char-btn');
+    const searchCharForm = document.querySelector('.search-char-form');
+
+    searchAnimeForm.style.display = "none";
+    searchCharForm.style.display = "none";
+
+    searchAnimeBtn.addEventListener('click', () => {
+        searchAnime = formToggle(searchAnimeForm, searchAnime);
+    });
+
+    searchCharBtn.addEventListener('click', () => {
+        searchChar = formToggle(searchCharForm, searchChar);
+    })    
 }
