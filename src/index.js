@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function fetchAnimeQuotes(){
-    fetch(`https://anime-facts-rest-api.herokuapp.com/api/v1`)
+    fetch(`https://animechan.vercel.app/api/quotes`)
     .then(resp => resp.json())
     .then(obj => loadAnimeQuotes(obj));
 }
