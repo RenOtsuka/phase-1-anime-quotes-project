@@ -11,11 +11,17 @@
 
     <body>
 
-    <h1>Famous Anime Quotes</h1>
+    <h1 style="text-align: center;">Famous Anime Quotes</h1>
     <br>
+    <p style="text-align: center;">
     <button id="search-anime-btn">Click Here to Search a Quote by Title</button>
-
-    <div class="container">
+    <button id="search-char-btn">Click Here to Search a Quote by Character</button>
+    <button id="ten-random-quotes">Click Here to Get Ten Random Quotes</button>
+    <button id="random-quote">Click Here to Get a Random Quote</button>
+    <button id="available-anime">Click Here to Get all Available Anime</button>
+    </p>
+    
+    <div class="container" style="text-align: center;">
         <form class="search-anime-form">
             <h3>Search by Anime Title</h3>
 
@@ -24,6 +30,23 @@
             name="title" 
             value="" 
             placeholder="Enter an anime title here..." 
+            class="input-text"
+            />
+                
+            <input type="submit" 
+            name="submit"
+            value="Submit"
+            class="submit"
+            />
+        </form>
+
+        <form class="search-char-form">
+            <h3>Search by Character</h3>
+            <input 
+            type="text" 
+            name="title" 
+            value="" 
+            placeholder="Enter character name here..." 
             class="input-text"
             />
                 
