@@ -2,6 +2,8 @@ let option = `quotes`;
 let searchAnime = false;
 let searchChar = false;
 let pageNum = 1;
+let animeLength = 0;
+let charLength = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     //fetchAnimeQuotes(option); 
@@ -26,10 +28,15 @@ function loadAnimeQuotes(quoteObj){
     const quoteList = document.getElementById('quote-list');
     quoteList.textContent = '';
     document.getElementById('anime-list').textContent = '';
-    
+    document.getElementById('back').style.display = 'none';
+    document.getElementById('forward').style.display = 'none';
+
     if(option.includes('quotes')){
-        if(option.includes(pageNum)){
-            pageNav();
+        if(option.includes(pageNum) && option.includes('anime')){
+            pageNav(option.slice(19, 19 + animeLength));
+        }
+        else if(option.includes(pageNum) && option.includes('character')){
+            pageNav(option.slice(21, 20 + animeLength));
         }
         for(let key in quoteObj){
             let li = makeQuote(quoteObj[key]);
@@ -102,21 +109,21 @@ function formToggle(form, bool){
 }
 
 //used from Monsters lab
-function pageNav(animeTitle){
+function pageNav(animeOption){
     const backBtn = document.getElementById('back');
     const forwardBtn = document.getElementById('forward');
 
     backBtn.style.display = "block";
     forwardBtn.style.display = "block";
 
-    backBtn.addEventListener('click', function(){
+    backBtn.addEventListener('click', () => {
         if(pageNum > 1){
             pageNum--;
             if(option.includes('anime')){
-                option = `quotes/anime?title=${animeTitle.toLowerCase()}&page=${pageNum}`; 
+                option = `quotes/anime?title=${animeOption.toLowerCase()}&page=${pageNum}`; 
             }
             else{
-                option = `quotes/character?name=${charName.toLowerCase()}&page=${pageNum}`;
+                option = `quotes/character?name=${animeOption.toLowerCase()}&page=${pageNum}`;
             }
             fetchAnimeQuotes(option);  
         }
@@ -125,8 +132,14 @@ function pageNav(animeTitle){
         }
     });
 
-    forwardBtn.addEventListener('click', function(){
+    forwardBtn.addEventListener('click', () => {
         pageNum++;
+        if(option.includes('anime')){
+            option = `quotes/anime?title=${animeOption.toLowerCase()}&page=${pageNum}`; 
+        }
+        else{
+            option = `quotes/character?name=${animeOption.toLowerCase()}&page=${pageNum}`;
+        }
         fetchAnimeQuotes(option);
     })
 
@@ -179,6 +192,7 @@ function initializeFormsAndBtns(){
     searchAnimeForm.addEventListener('submit', e => {
         e.preventDefault();
         let animeTitle = Array.from(document.getElementsByClassName('input-text'))[0].value;
+        animeLength = animeTitle.length;
         option = `quotes/anime?title=${animeTitle.toLowerCase()}&page=${pageNum}`;
         fetchAnimeQuotes(option);
     });
@@ -186,6 +200,7 @@ function initializeFormsAndBtns(){
     searchCharForm.addEventListener('submit', e => {
         e.preventDefault();
         let charName = Array.from(document.getElementsByClassName('input-text'))[1].value;
+        charLength = charName.length;
         option = `quotes/character?name=${charName.toLowerCase()}&page=${pageNum}`;
         fetchAnimeQuotes(option);
     })
