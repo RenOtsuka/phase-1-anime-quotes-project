@@ -26,14 +26,13 @@ function loadAnimeQuotes(quoteObj){
     quoteList.textContent = '';
     document.getElementById('anime-list').textContent = '';
     
-    if(option === 'quotes'){
+    if(option.includes('quotes')){
         for(let key in quoteObj){
             let li = makeQuote(quoteObj[key]);
             quoteList.appendChild(li);
         }
     }
     else{
-        //console.log(quoteObj);
         let li = makeQuote(quoteObj);
         quoteList.appendChild(li);
     }
@@ -44,8 +43,12 @@ function loadAvailableAnime(animeObj){
     animeList.textContent = '';
     document.getElementById('quote-list').textContent = '';
 
+    const subTitle = document.createElement('h3');
+    subTitle.style.textAlign = 'center';
+    subTitle.textContent = 'Available Anime';
+    animeList.appendChild(subTitle);
+    
     for(let item in animeObj){
-        //console.log(animeArr[item])
         let li = document.createElement('li');
         li.id = animeObj[item];
         li.textContent = animeObj[item];
@@ -129,6 +132,20 @@ function initializeFormsAndBtns(){
 
     availableAnimeBtn.addEventListener('click', () => {
         option = `available/anime`;
+        fetchAnimeQuotes(option);
+    })
+
+    searchAnimeForm.addEventListener('submit', e => {
+        e.preventDefault();
+        let animeTitle = Array.from(document.getElementsByClassName('input-text'))[0].value;
+        option = `quotes/anime?title=${animeTitle.toLowerCase()}`
+        fetchAnimeQuotes(option);
+    });
+
+    searchCharForm.addEventListener('submit', e => {
+        e.preventDefault();
+        let charName = Array.from(document.getElementsByClassName('input-text'))[1].value;
+        option = `quotes/character?name=${charName.toLowerCase()}`;
         fetchAnimeQuotes(option);
     })
 }
