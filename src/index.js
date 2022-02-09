@@ -1,9 +1,9 @@
-let option = `quotes`;
-let searchAnime = false;
-let searchChar = false;
-let pageNum = 1;
-let animeLength = 0;
-let charLength = 0;
+let option = `quotes`; //str var. to keep track of which funcionality is being used
+let searchAnime = false; //bool to toggle anime form
+let searchChar = false; //bool to toggle character form
+let pageNum = 1; // var. to load pages
+let animeLength = 0; //length used to splice 'option' for pagination
+let charLength = 0; //length used to splice 'option' for pagination
 
 document.addEventListener('DOMContentLoaded', () => {
     //fetchAnimeQuotes(option); 
@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+//gets quotes from API
 function fetchAnimeQuotes(option){
     fetch(`https://animechan.vercel.app/api/${option}`)
     .then(resp => resp.json())
@@ -24,6 +25,7 @@ function fetchAnimeQuotes(option){
     });
 }
 
+//loads quote(s) to the document
 function loadAnimeQuotes(quoteObj){
     const quoteList = document.getElementById('quote-list');
     quoteList.textContent = '';
@@ -32,23 +34,26 @@ function loadAnimeQuotes(quoteObj){
     document.getElementById('forward').style.display = 'none';
 
     if(option.includes('quotes')){
+
         if(option.includes(pageNum) && option.includes('anime')){
             pageNav(option.slice(19, 19 + animeLength));
         }
         else if(option.includes(pageNum) && option.includes('character')){
             pageNav(option.slice(21, 20 + animeLength));
         }
+
         for(let key in quoteObj){
             let li = makeQuote(quoteObj[key]);
             quoteList.appendChild(li);
         }
     }
-    else{
+    else{ //loads random quote
         let li = makeQuote(quoteObj);
         quoteList.appendChild(li);
     }
 }
 
+//loads all available anime from the API
 function loadAvailableAnime(animeObj){
     const animeList = document.getElementById('anime-list');
     animeList.textContent = '';
@@ -67,6 +72,7 @@ function loadAvailableAnime(animeObj){
     }
 }
 
+//creates the element to display the quote on the page
 function makeQuote(quoteObj){
     const ul = document.createElement('ul');
     ul.id = quoteObj['anime'];
@@ -95,6 +101,7 @@ function makeQuote(quoteObj){
     return ul;
 }
 
+//toggle the form from hiding to showing and vice versa
 function formToggle(form, bool){
 
     bool = !bool;
@@ -108,8 +115,10 @@ function formToggle(form, bool){
     return bool;
 }
 
+//function to naviagte through quotes
 //used from Monsters lab
 function pageNav(animeOption){
+
     const backBtn = document.getElementById('back');
     const forwardBtn = document.getElementById('forward');
 
@@ -142,9 +151,9 @@ function pageNav(animeOption){
         }
         fetchAnimeQuotes(option);
     })
-
 }
 
+//initialize all necessary forms and buttons on the document
 function initializeFormsAndBtns(){
 
     const searchAnimeBtn = document.getElementById('search-anime-btn');
