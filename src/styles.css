@@ -1,7 +1,21 @@
 body{
-    font-family: Georgia, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(229, 229, 236);
+    
 }
 
+#header{
+    background-color: rgb(153, 44, 44);
+}
+
+
+button{
+    position: relative;
+    border: none;
+    height: 2rem;
+    border-radius: 8px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
 
 .search-anime-form{
     display: none;
@@ -9,4 +23,26 @@ body{
 
 .search-char-form{
     display: none;
+}
+
+input.submit{
+    border-radius: 8px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border: none;
+}
+
+.input-text{
+    
+    border-radius: 5px;
+}
+
+
+#back{
+    display: none;
+    color: black;
+}
+
+#forward{
+    display: none;
+    color: black;
 }
