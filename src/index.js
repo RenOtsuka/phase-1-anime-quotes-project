@@ -58,6 +58,9 @@ function loadAvailableAnime(animeObj){
     const animeList = document.getElementById('anime-list');
     animeList.textContent = '';
     document.getElementById('quote-list').textContent = '';
+    document.getElementById('back').style.display = 'none';
+    document.getElementById('forward').style.display = 'none';
+
 
     const subTitle = document.createElement('h3');
     subTitle.style.textAlign = 'center';
@@ -69,6 +72,7 @@ function loadAvailableAnime(animeObj){
         li.id = animeObj[item];
         li.textContent = animeObj[item];
         animeList.appendChild(li);
+        animeList.appendChild(document.createElement('br'));
     }
 }
 
