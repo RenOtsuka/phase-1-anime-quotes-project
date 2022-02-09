@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-//gets quotes from API
+//gets quotes/anime from API
 function fetchAnimeQuotes(option){
     fetch(`https://animechan.vercel.app/api/${option}`)
     .then(resp => resp.json())
@@ -22,7 +22,8 @@ function fetchAnimeQuotes(option){
         else{
             loadAnimeQuotes(obj);
         }
-    });
+    })
+    .catch(error => alert(error));
 }
 
 //loads quote(s) to the document
@@ -44,6 +45,9 @@ function loadAnimeQuotes(quoteObj){
 
         for(let key in quoteObj){
             let li = makeQuote(quoteObj[key]);
+            if(li === undefined){
+
+            }
             quoteList.appendChild(li);
         }
     }
@@ -78,8 +82,22 @@ function loadAvailableAnime(animeObj){
 
 //creates the element to display the quote on the page
 function makeQuote(quoteObj){
+
+   
+
     const ul = document.createElement('ul');
     ul.id = quoteObj['anime'];
+
+    if(quoteObj['quote'] === undefined && option.includes('anime')){
+        ul.textContent = "Anime not found";
+        ul.style.textAlign = "center";
+        return ul;
+    }
+    else if(quoteObj['quote'] === undefined && option.includes('character')){
+        ul.textContent = "Character not found";
+        ul.style.textAlign = "center";
+        return ul;
+    }
 
     const blockQuote = document.createElement('blockquote');
     blockQuote.className = 'block-quote';
