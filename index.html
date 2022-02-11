@@ -5,70 +5,72 @@
     <head>
         <meta charset="utf-8">
         <title>Anime Quotes Project</title>
-        <link rel="stylesheets" type="text/css" href="styles.css"/> 
+        <link rel="stylesheet" type="text/css" href="./src/styles.css"/> 
         <script defer type="text/javascript" src="./src/index.js"></script>
 
     </head>
 
     <body>
+        <div id="header">
+             <h1 id="title" style="text-align: center;">Famous Anime Quotes</h1>
+        </div>
+       
 
-    <h1 style="text-align: center;">Famous Anime Quotes</h1>
+        <p style="text-align: center;">
+        <button id="search-anime-btn">Click Here to Search a Quote by Title</button>
+        <button id="search-char-btn">Click Here to Search a Quote by Character</button>
+        <button id="ten-random-quotes">Click Here to Get Ten Random Quotes</button>
+        <button id="random-quote">Click Here to Get a Random Quote</button>
+        <button id="available-anime">Click Here to Get all Available Anime</button>
+        </p>
+        
+        <div class="container" style="text-align: center;">
 
-    <br>
+            <form class="search-anime-form">
+                <h3>Search by Anime Title</h3>
+                <input 
+                type="text" 
+                name="title" 
+                value="" 
+                placeholder="Enter an anime title here..." 
+                class="input-text"
+                />
+                <input type="submit" 
+                name="submit"
+                value="Submit"
+                class="submit"
+                />
+            </form>
 
-    <p style="text-align: center;">
-    <button id="search-anime-btn">Click Here to Search a Quote by Title</button>
-    <button id="search-char-btn">Click Here to Search a Quote by Character</button>
-    <button id="ten-random-quotes">Click Here to Get Ten Random Quotes</button>
-    <button id="random-quote">Click Here to Get a Random Quote</button>
-    <button id="available-anime">Click Here to Get all Available Anime</button>
-    </p>
-    
-    <div class="container" style="text-align: center;">
+            <form class="search-char-form">
+                <h3>Search by Character</h3>
+                <input 
+                type="text" 
+                name="title" 
+                value="" 
+                placeholder="Enter character name here..." 
+                class="input-text"
+                />
+                <input type="submit" 
+                name="submit"
+                value="Submit"
+                class="submit"
+                />
+            </form>
+        </div>
+        
+        </br>
 
-        <form class="search-anime-form">
-            <h3>Search by Anime Title</h3>
-            <input 
-            type="text" 
-            name="title" 
-            value="" 
-            placeholder="Enter an anime title here..." 
-            class="input-text"
-            />
-            <input type="submit" 
-            name="submit"
-            value="Submit"
-            class="submit"
-            />
-        </form>
+        <div>
+            <ul id="quote-list"></ul>
+        </div>
 
-        <form class="search-char-form">
-            <h3>Search by Character</h3>
-            <input 
-            type="text" 
-            name="title" 
-            value="" 
-            placeholder="Enter character name here..." 
-            class="input-text"
-            />
-            <input type="submit" 
-            name="submit"
-            value="Submit"
-            class="submit"
-            />
-        </form>
-    </div>
-    
-    <div>
-        <ul id="quote-list"></ul>
-    </div>
+        <div>
+            <ul id="anime-list"></ul>
+        </div>
 
-    <div>
-        <ul id="anime-list"></ul>
-    </div>
-
-    <button id="back"><=</button>
-    <button id="forward">=></button>
+        <button id="back"><=</button>
+        <button id="forward">=></button>
     
     </body>
 </html>
