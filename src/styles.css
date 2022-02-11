@@ -36,6 +36,14 @@ input.submit{
     border-radius: 5px;
 }
 
+#quote-list{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#anime-list{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 
 #back{
     display: none;
