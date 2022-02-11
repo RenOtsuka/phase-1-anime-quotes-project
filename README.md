@@ -37,6 +37,11 @@ Clicking either or both the first two buttons will toggle the forms to show/hide
 
 </br>
 
+The third button will display ten random quotes from the API each time the button is clicked
+
+The fourth button will display a random quote each time the button is clicked
+
+The last button will display all available anime that is in the database of the API
 
 ---
 
