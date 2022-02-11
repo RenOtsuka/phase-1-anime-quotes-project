@@ -22,6 +22,24 @@ As a user in this Single Page Application,
 
 ---
 
+## Overview
+
+Upon loading the page the home screen looks like this
+where there are five buttons to interact with, all labeled
+
+![Home Screen](./readme_img/home_screen.png)
+
+</br>
+
+Clicking either or both the first two buttons will toggle the forms to show/hide, giving the user the ability to search for quotes based on the name of the anime or a character
+
+![Forms](./readme_img/form_screen.png)
+
+</br>
+
+
+---
+
 ## API Used in this Project
 
 [Animechan API](https://animechan.vercel.app/)
