@@ -67,7 +67,7 @@ function loadAvailableAnime(animeObj){
 
 
     const subTitle = document.createElement('h3');
-    subTitle.style.textAlign = 'center';
+    //subTitle.style.textAlign = 'center';
     subTitle.textContent = 'Available Anime';
     animeList.appendChild(subTitle);
     
@@ -75,6 +75,7 @@ function loadAvailableAnime(animeObj){
         let li = document.createElement('li');
         li.id = animeObj[item];
         li.textContent = animeObj[item];
+        //li.style.textAlign = 'center';
         animeList.appendChild(li);
         animeList.appendChild(document.createElement('br'));
     }
