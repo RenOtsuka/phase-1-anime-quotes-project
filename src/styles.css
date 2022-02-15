@@ -2,10 +2,15 @@ body{
     font-family: Georgia, 'Times New Roman', Times, serif;
     background-color: rgb(229, 229, 236);
     
+
 }
 
 #header{
-    background-color: rgb(153, 44, 44);
+    
+    background-image: url('/Ubuntu/home/ryans/Development/code/phase1/phase-1-anime-quotes-project/readme_img/steinsgatelogo.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    
 }
 
 
