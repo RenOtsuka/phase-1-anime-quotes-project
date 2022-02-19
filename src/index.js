@@ -84,18 +84,16 @@ function loadAvailableAnime(animeObj){
 //creates the element to display the quote on the page
 function makeQuote(quoteObj){
 
-   
-
     const ul = document.createElement('ul');
     ul.id = quoteObj['anime'];
 
     if(quoteObj['quote'] === undefined && option.includes('anime')){
-        ul.textContent = "Anime not found";
+        ul.textContent = "Anime not found or no more quotes found";
         ul.style.textAlign = "center";
         return ul;
     }
     else if(quoteObj['quote'] === undefined && option.includes('character')){
-        ul.textContent = "Character not found";
+        ul.textContent = "Character not found or no more quotes found";
         ul.style.textAlign = "center";
         return ul;
     }
@@ -139,7 +137,6 @@ function formToggle(form, bool){
 }
 
 //function to naviagte through quotes
-//used from Monsters lab
 function pageNav(animeOption){
 
     const backBtn = document.getElementById('back');
